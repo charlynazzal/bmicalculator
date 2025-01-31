@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { calculateBmi, getBmiCategory } from "@/lib/bmi";
 import { BmiResult } from "./bmi-result";
 import { BmiRecommendations } from "./bmi-recommendations";
+import { BmiChart } from "./bmi-chart";
 
 const formSchema = z.object({
   height: z.coerce.number().positive("Height must be positive").max(300, "Height seems too large"),
@@ -38,63 +39,67 @@ export function BmiCalculator() {
   const category = bmi ? getBmiCategory(bmi) : null;
 
   return (
-    <Card className="shadow-lg">
-      <CardContent className="p-6">
-        <div className="flex items-center justify-end space-x-2 mb-6">
-          <Label htmlFor="unit-toggle">Imperial</Label>
-          <Switch
-            id="unit-toggle"
-            checked={useMetric}
-            onCheckedChange={setUseMetric}
-          />
-          <Label htmlFor="unit-toggle">Metric</Label>
-        </div>
-
-        <Form {...form}>
-          <form className="space-y-6">
-            <FormField
-              control={form.control}
-              name="height"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Height {useMetric ? "(cm)" : "(inches)"}</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      placeholder={useMetric ? "170" : "67"}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+    <div className="space-y-6">
+      <Card className="shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-end space-x-2 mb-6">
+            <Label htmlFor="unit-toggle">Imperial</Label>
+            <Switch
+              id="unit-toggle"
+              checked={useMetric}
+              onCheckedChange={setUseMetric}
             />
+            <Label htmlFor="unit-toggle">Metric</Label>
+          </div>
 
-            <FormField
-              control={form.control}
-              name="weight"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Weight {useMetric ? "(kg)" : "(lbs)"}</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="number"
-                      placeholder={useMetric ? "70" : "154"}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </form>
-        </Form>
+          <Form {...form}>
+            <form className="space-y-6">
+              <FormField
+                control={form.control}
+                name="height"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Height {useMetric ? "(cm)" : "(inches)"}</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder={useMetric ? "170" : "67"}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        <div className="mt-8">
-          <BmiResult bmi={bmi} />
-          <BmiRecommendations category={category} />
-        </div>
-      </CardContent>
-    </Card>
+              <FormField
+                control={form.control}
+                name="weight"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Weight {useMetric ? "(kg)" : "(lbs)"}</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder={useMetric ? "70" : "154"}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+
+          <div className="mt-8">
+            <BmiResult bmi={bmi} />
+            <BmiRecommendations category={category} />
+          </div>
+        </CardContent>
+      </Card>
+
+      <BmiChart />
+    </div>
   );
 }
