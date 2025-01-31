@@ -11,6 +11,7 @@ import { calculateBmi, getBmiCategory } from "@/lib/bmi";
 import { BmiResult } from "./bmi-result";
 import { BmiRecommendations } from "./bmi-recommendations";
 import { BmiChart } from "./bmi-chart";
+import { BmiReport } from "./bmi-report";
 
 const formSchema = z.object({
   height: z.coerce.number().positive("Height must be positive").max(300, "Height seems too large"),
@@ -95,6 +96,13 @@ export function BmiCalculator() {
           <div className="mt-8">
             <BmiResult bmi={bmi} />
             <BmiRecommendations category={category} />
+            <BmiReport 
+              bmi={bmi}
+              category={category}
+              metric={useMetric}
+              height={form.watch("height")}
+              weight={form.watch("weight")}
+            />
           </div>
         </CardContent>
       </Card>
