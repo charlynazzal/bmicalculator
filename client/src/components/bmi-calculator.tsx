@@ -7,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { calculateBmi } from "@/lib/bmi";
+import { calculateBmi, getBmiCategory } from "@/lib/bmi";
 import { BmiResult } from "./bmi-result";
+import { BmiRecommendations } from "./bmi-recommendations";
 
 const formSchema = z.object({
   height: z.coerce.number().positive("Height must be positive").max(300, "Height seems too large"),
@@ -19,12 +20,12 @@ type FormValues = z.infer<typeof formSchema>;
 
 export function BmiCalculator() {
   const [useMetric, setUseMetric] = useState(true);
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      height: "",
-      weight: "",
+      height: 0,
+      weight: 0,
     },
   });
 
@@ -33,6 +34,8 @@ export function BmiCalculator() {
     form.watch("weight"),
     useMetric
   );
+
+  const category = bmi ? getBmiCategory(bmi) : null;
 
   return (
     <Card className="shadow-lg">
@@ -89,6 +92,7 @@ export function BmiCalculator() {
 
         <div className="mt-8">
           <BmiResult bmi={bmi} />
+          <BmiRecommendations category={category} />
         </div>
       </CardContent>
     </Card>
