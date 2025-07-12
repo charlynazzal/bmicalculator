@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - Professional Health Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>BMI Calculator</h1>
+            <p>Calculate your Body Mass Index and learn about your health status</p>
+        </header>
+
+        <main class="calculator">
+            <form class="calculator-form" id="bmiForm">
+                <div class="input-group">
+                    <label for="height">Height</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="height" 
+                            name="height" 
+                            placeholder="Enter your height"
+                            min="1"
+                            step="0.1"
+                            required
+                            aria-describedby="height-error"
+                        >
+                        <select id="heightUnit" name="heightUnit" aria-label="Height unit">
+                            <option value="cm">cm</option>
+                            <option value="ft">ft/in</option>
+                        </select>
+                    </div>
+                    <input 
+                        type="number" 
+                        id="heightInches" 
+                        name="heightInches" 
+                        placeholder="inches"
+                        min="0"
+                        max="11"
+                        step="1"
+                        style="display: none;"
+                        aria-label="Height in inches"
+                    >
+                    <span class="error-message" id="height-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="weight">Weight</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="weight" 
+                            name="weight" 
+                            placeholder="Enter your weight"
+                            min="1"
+                            step="0.1"
+                            required
+                            aria-describedby="weight-error"
+                        >
+                        <select id="weightUnit" name="weightUnit" aria-label="Weight unit">
+                            <option value="kg">kg</option>
+                            <option value="lbs">lbs</option>
+                        </select>
+                    </div>
+                    <span class="error-message" id="weight-error"></span>
+                </div>
+
+                <button type="submit" class="calculate-btn">Calculate BMI</button>
+            </form>
+
+            <div class="result-section" id="resultSection">
+                <div class="bmi-result">
+                    <h2>Your BMI Result</h2>
+                    <div class="bmi-value" id="bmiValue">--</div>
+                    <div class="bmi-category" id="bmiCategory">Enter your details above</div>
+                </div>
+
+                <div class="bmi-chart">
+                    <h3>BMI Categories</h3>
+                    <div class="chart-items">
+                        <div class="chart-item underweight">
+                            <span class="range">Below 18.5</span>
+                            <span class="category">Underweight</span>
+                        </div>
+                        <div class="chart-item normal">
+                            <span class="range">18.5 - 24.9</span>
+                            <span class="category">Normal weight</span>
+                        </div>
+                        <div class="chart-item overweight">
+                            <span class="range">25.0 - 29.9</span>
+                            <span class="category">Overweight</span>
+                        </div>
+                        <div class="chart-item obese">
+                            <span class="range">30.0 and above</span>
+                            <span class="category">Obese</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p><strong>Disclaimer:</strong> This BMI calculator is for educational purposes only. Consult with healthcare professionals for medical advice.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
