@@ -147,29 +147,6 @@ The backend provides RESTful API endpoints:
 - `POST /train` - Train/retrain the ML model
 - `POST /user-profile` - Save user profile data
 
-## Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/improvement`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/improvement`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Disclaimer
-
-This BMI calculator is for educational and informational purposes only. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with healthcare professionals for medical guidance.
-
 ## Author
 
-Built by [Charlyn Azzal](https://github.com/charlynazzal) 
+Built by [Charly Nazzal](https://github.com/charlynazzal) 
